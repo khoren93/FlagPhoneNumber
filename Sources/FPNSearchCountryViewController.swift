@@ -119,6 +119,7 @@ class FPNSearchCountryViewController: UITableViewController, UISearchResultsUpda
 
 		searchController?.isActive = false
 		searchController?.searchBar.resignFirstResponder()
+        self.dismissController()
 	}
 
 	// UISearchResultsUpdating
