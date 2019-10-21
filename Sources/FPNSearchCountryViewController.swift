@@ -45,7 +45,7 @@ class FPNSearchCountryViewController: UITableViewController, UISearchResultsUpda
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 
-		searchController?.isActive = true
+//		searchController?.isActive = true
 	}
 
 	@objc private func dismissController() {
