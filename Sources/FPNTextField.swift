@@ -10,8 +10,33 @@ import UIKit
 
 open class FPNTextField: UITextField, FPNCountryPickerDelegate, FPNDelegate {
 
+
+    public enum CountryPickerType {
+           case SEARCH
+           case PICKER
+           case PICKER_SEARCH
+       }
+       
+       public var countryPickerType: CountryPickerType = .PICKER_SEARCH {
+           willSet(type) {
+               flagButton.removeTarget(nil, action: nil, for: .allEvents)
+               switch  type{
+               case .PICKER_SEARCH:
+                   flagButton.addTarget(self, action: #selector(displayCountryKeyboard), for: .touchUpInside)
+               case .SEARCH:
+                   flagButton.addTarget(self, action: #selector(displayAlphabeticKeyBoard), for: .touchUpInside)
+               case .PICKER:
+                   self.parentViewController = nil
+                   flagButton.addTarget(self, action: #selector(displayCountryKeyboard), for: .touchUpInside)
+               }
+               
+           }
+       }
+    
+
 	/// The size of the flag button
 	@objc public var flagButtonSize: CGSize = CGSize(width: 32, height: 32) {
+
 		didSet {
 			layoutIfNeeded()
 		}
