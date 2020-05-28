@@ -22,7 +22,7 @@ open class FPNTextField: UITextField {
 
 	/// The size of the leftView
 	private var leftViewSize: CGSize {
-		let width = flagButtonSize.width + getWidth(text: phoneCodeTextField.text!)
+		let width = flagButtonSize.width + getWidth(text: phoneCodeTextField.text!) + 5
 		let height = bounds.height
 
 		return CGSize(width: width, height: height)
@@ -446,7 +446,7 @@ open class FPNTextField: UITextField {
 	private func updatePlaceholder() {
 		if let countryCode = selectedCountry?.code {
 			do {
-				let example = try phoneUtil.getExampleNumber(countryCode.rawValue)
+                let example = try phoneUtil.getExampleNumber(forType: countryCode.rawValue, type: .MOBILE)
 				let phoneNumber = "+\(example.countryCode.stringValue)\(example.nationalNumber.stringValue)"
 
 				if let inputString = formatter?.inputString(phoneNumber) {
